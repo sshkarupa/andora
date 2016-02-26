@@ -24,6 +24,13 @@ $ cd project
 $ git clone git@github.com:weazar/andora.git ansible
 ```
 
+Add to `.ssh/config`
+
+```
+Host *
+  ForwardAgent yes
+```
+
 Run an ansible docker container
 
 ```
@@ -37,13 +44,14 @@ Set variables in [group_vars/webservers](group_vars/webservers)
 
 - Set your app name
 - Set git repository path
+- Set export data command for your database
 
 Set environment variables in [playbooks/roles/deploy/templates/env.j2](playbooks/roles/deploy/templates/env.j2)
 
 - RAILS_ENV=production
 - PORT=3000
 - MYSQL_ROOT_PASSWORD=password
-- MYSQL_USER=app_name))
+- MYSQL_USER=app_name
 - MYSQL_PASSWORD=password
 - MYSQL_DATABASE=app_name_production
 - DEFAULT_URL_OPTIONS='//domain_name'

@@ -20,4 +20,9 @@ git_cache_path: "{{ deploy_to }}/repo"
 
 # Number of releases to keep in your hosts, if 0, unlimited releases will be kept
 keep_releases: 5
+
+# Export data to mysql
+export_data_command: 'mysql -h"$MYSQL_PORT_3306_TCP_ADDR" -P"$MYSQL_PORT_3306_TCP_PORT" -uroot -p"$MYSQL_ENV_MYSQL_ROOT_PASSWORD" "$MYSQL_ENV_MYSQL_DATABASE" < /mnt/src/tmp/dump.sql'
+# Export data to postgres
+# export_data_command: 'psql -h "$POSTGRES_PORT_5432_TCP_ADDR" -p "$POSTGRES_PORT_5432_TCP_PORT" -U postgres $POSTGRES_DB" < /mnt/src/tmp/dump.sql'
 ...
