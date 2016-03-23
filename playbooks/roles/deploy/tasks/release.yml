@@ -28,7 +28,24 @@
 
 - name: Clean up releases
   shell: ls -1dt {{ releases_path }}/* | tail -n +{{ keep_releases | int + 1 }} | xargs rm -rf
+  remote_user: root
   when: keep_releases > 0
 
-- debug: msg="Current release is {{ release_version.stdout }}"
+- name: Set assets link
+  file: src={{ assets_path }} path={{ release_path.stdout }}/public/assets state=link follow=yes
+
+- name: Set structure.sql link
+  file: src={{ db_path }}/structure.sql path={{ release_path.stdout }}/db/structure.sql state=link follow=yes
+
+- name: Set log link
+  file: src={{ log_path }} path={{ release_path.stdout }}/log state=link follow=yes
+
+- name: Set system link
+  file: src={{ system_path }} path={{ release_path.stdout }}/public/system state=link follow=yes
+
+- name: Set tmp link
+  file: src={{ tmp_path }} path={{ release_path.stdout }}/tmp state=link follow=yes
+
+- name: Set current release link
+  file: src={{ release_path.stdout }} path={{ current_path }} state=link follow=yes
 ...

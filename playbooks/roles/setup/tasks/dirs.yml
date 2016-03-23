@@ -11,16 +11,24 @@
   file: path={{ assets_path }} state=directory mode=0775
   remote_user: "{{ app_name }}"
 
+- name: Ensure shared/db directory exists
+  file: path={{ db_path }} state=directory mode=0775
+  remote_user: "{{ app_name }}"
+
+- name: Ensure shared/db/structure.sql file exists
+  file: path={{ db_path }}/structure.sql state=touch mode=0666
+  remote_user: "{{ app_name }}"
+
 - name: Ensure shared/log directory exists
   file: path={{ log_path }} state=directory mode=0775
   remote_user: "{{ app_name }}"
 
-- name: Ensure production.log file exists
+- name: Ensure shared/log/production.log file exists
   file: path={{ log_path }}/production.log state=touch mode=0666
   remote_user: "{{ app_name }}"
 
-- name: Ensure shared/uploads directory exists
-  file: path={{ uploads_path }} state=directory mode=0775
+- name: Ensure shared/system directory exists
+  file: path={{ system_path }} state=directory mode=0775
   remote_user: "{{ app_name }}"
 
 - name: Ensure shared/tmp directory exists

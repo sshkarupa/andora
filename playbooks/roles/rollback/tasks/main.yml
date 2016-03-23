@@ -7,13 +7,13 @@
   shell: ls -1r "{{ releases_path }}" | grep -A 1 "{{ current_release.stdout }}" | tail -1
   register: previous_release
 
-- name: Restart docker containers
-  command: docker-compose -f docker-compose.prod.yml -p "{{ app_name }}" restart
+- name: Restart rails docker container
+  command: docker-compose -f docker-compose.prod.yml -p "{{ app_name }}" restart rails
   args:
     chdir: "{{ releases_path }}/{{ previous_release.stdout }}"
 
 - name: Set current release link
   file: src={{ releases_path }}/{{ previous_release.stdout }} path={{ current_path }} state=link follow=yes
 
-- debug: msg="Current release is {{ previous_release.stdout }}"
+- debug: msg="Current release = {{ previous_release.stdout }}"
 ...

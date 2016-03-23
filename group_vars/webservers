@@ -1,28 +1,20 @@
 ---
 app_name: "app_name"
 
-# General dirs
 deploy_to: "/home/{{ app_name }}"
 releases_path: "{{ deploy_to }}/releases"
 current_path: "{{ deploy_to }}/current"
 
-# Shared dirs
-shared_path: "{{ deploy_to }}/shared"
 assets_path: "{{ shared_path }}/assets"
+db_path: "{{ shared_path }}/db"
 log_path: "{{ shared_path }}/log"
-uploads_path: "{{ shared_path }}/uploads"
+shared_path: "{{ deploy_to }}/shared"
+system_path: "{{ shared_path }}/system"
 tmp_path: "{{ shared_path }}/tmp"
 
-# Git repository
 git_repo: "ssh://git@gitgub.com/username/repository.git"
 git_branch: "master"
 git_cache_path: "{{ deploy_to }}/repo"
 
-# Number of releases to keep in your hosts, if 0, unlimited releases will be kept
 keep_releases: 5
-
-# Export data to mysql
-export_data_command: 'mysql -h"$MYSQL_PORT_3306_TCP_ADDR" -P"$MYSQL_PORT_3306_TCP_PORT" -uroot -p"$MYSQL_ENV_MYSQL_ROOT_PASSWORD" "$MYSQL_ENV_MYSQL_DATABASE" < /mnt/src/tmp/dump.sql'
-# Export data to postgres
-# export_data_command: 'psql -h "$POSTGRES_PORT_5432_TCP_ADDR" -p "$POSTGRES_PORT_5432_TCP_PORT" -U postgres $POSTGRES_DB" < /mnt/src/tmp/dump.sql'
 ...
