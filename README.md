@@ -46,6 +46,7 @@ Set variables in [group_vars/webservers](group_vars/webservers)
 - Set git repository path
 
 Set environment variables in [playbooks/roles/deploy/templates/env.j2](playbooks/roles/deploy/templates/env.j2)
+
 Add env.j2 to .gitignore
 
 Setup a host
