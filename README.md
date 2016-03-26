@@ -61,6 +61,12 @@ Deploy release
 $ ansible-playbook playbooks/deploy.yml
 ```
 
+Deploy release without new gems, migrates and asstes
+
+```
+$ ansible-playbook playbooks/deploy.yml -t fast_deploy
+```
+
 Export database data
 
 - Put your dump file to `playbooks/roles/export_data/files/structure.sql`

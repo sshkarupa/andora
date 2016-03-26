@@ -1,0 +1,15 @@
+---
+- name: Generate Gemfile.lock
+  command: docker run --rm -v "{{ current_path }}":/usr/src/app -w /usr/src/app ruby bundle
+  args:
+    chdir: "{{ current_path }}"
+
+- name: Build new rails container
+  command: docker-compose -f docker-compose.prod.yml -p "{{ app_name }}" build
+  args:
+    chdir: "{{ current_path }}"
+
+- name: Up docker services
+  command: docker-compose -f docker-compose.prod.yml -p "{{ app_name }}" up -d --force-recreate
+  args:
+    chdir: "{{ current_path }}"

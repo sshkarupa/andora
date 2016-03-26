@@ -1,0 +1,8 @@
+---
+- name: Restart rails docker container
+  command: docker-compose -f docker-compose.prod.yml -p "{{ app_name }}" restart rails
+  args:
+    chdir: "{{ current_path }}"
+  tags:
+    - fast_deploy
+...

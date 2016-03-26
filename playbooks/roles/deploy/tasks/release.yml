@@ -2,10 +2,14 @@
 - name: Get release version
   command: date +%Y%m%d%H%M%S
   register: release_version
+  tags:
+    - fast_deploy
 
 - name: Set release directory
   command: echo "{{ releases_path }}/{{ release_version.stdout }}"
   register: release_path
+  tags:
+    - fast_deploy
 
 - name: Checkout git repository from bitbucket.org
   git:
@@ -14,38 +18,60 @@
     version: "{{ git_branch }}"
     accept_hostkey: yes
     force: yes
+  tags:
+    - fast_deploy
 
 - name: Checkout git repository into release directory
   command: git checkout-index -f -a --prefix="{{ release_path.stdout }}/"
   args:
     chdir: "{{ git_cache_path }}"
+  tags:
+    - fast_deploy
 
 - name: Copy .env file
   template: src=env.j2 dest={{ release_path.stdout }}/.env
+  tags:
+    - fast_deploy
 
 - name: Copy release version into REVISION file
   copy: content={{ release_version.stdout }} dest={{ release_path.stdout }}/REVISION
+  tags:
+    - fast_deploy
 
 - name: Clean up releases
   shell: ls -1dt {{ releases_path }}/* | tail -n +{{ keep_releases | int + 1 }} | xargs rm -rf
   remote_user: root
   when: keep_releases > 0
+  tags:
+    - fast_deploy
 
 - name: Set assets link
   file: src={{ assets_path }} path={{ release_path.stdout }}/public/assets state=link follow=yes
+  tags:
+    - fast_deploy
 
 - name: Set structure.sql link
   file: src={{ db_path }}/structure.sql path={{ release_path.stdout }}/db/structure.sql state=link follow=yes
+  tags:
+    - fast_deploy
 
 - name: Set log link
   file: src={{ log_path }} path={{ release_path.stdout }}/log state=link follow=yes
+  tags:
+    - fast_deploy
 
 - name: Set system link
   file: src={{ system_path }} path={{ release_path.stdout }}/public/system state=link follow=yes
+  tags:
+    - fast_deploy
 
 - name: Set tmp link
   file: src={{ tmp_path }} path={{ release_path.stdout }}/tmp state=link follow=yes
+  tags:
+    - fast_deploy
 
 - name: Set current release link
   file: src={{ release_path.stdout }} path={{ current_path }} state=link follow=yes
+  tags:
+    - fast_deploy
 ...

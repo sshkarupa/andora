@@ -1,4 +1,7 @@
 ---
 - include: release.yml
-- include: prepare.yml
+- include: build.yml
+- include: data.yml
+- include: assets.yml
+- include: restart.yml
 ...

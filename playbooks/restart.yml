@@ -1,0 +1,11 @@
+---
+- hosts: webservers
+  remote_user: "{{ app_name }}"
+  gather_facts: no
+
+  tasks:
+  - name: Restart docker containers
+    command: docker-compose -f docker-compose.prod.yml -p "{{ app_name }}" restart
+    args:
+      chdir: "{{ current_path }}"
+...

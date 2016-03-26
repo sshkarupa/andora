@@ -1,0 +1,12 @@
+---
+- name: Set rails container id
+  shell: docker-compose -f docker-compose.prod.yml -p "{{ app_name }}" ps -q rails | head -1
+  register: rails
+  args:
+    chdir: "{{ current_path }}"
+
+- name: Precompile assets
+  command: docker exec -it "{{ rails.stdout }}" sh -c 'bundle exec rake assets:precompile'
+  args:
+    chdir: "{{ current_path }}"
+...
