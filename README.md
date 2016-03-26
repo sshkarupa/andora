@@ -84,7 +84,7 @@ $ ansible-playbook playbooks/rollback.yml
 Restart all services
 
 ```
-$ ansible-playbook playbooks/retart.yml
+$ ansible-playbook playbooks/restart.yml
 ```
 
 **How to configure docker for rails application see [weazar/dora](https://github.com/weazar/dora)**
