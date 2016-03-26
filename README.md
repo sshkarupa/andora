@@ -61,7 +61,7 @@ Deploy release
 $ ansible-playbook playbooks/deploy.yml
 ```
 
-Deploy release without new gems, migrates and asstes
+Deploy release without new gems, migrates and assets
 
 ```
 $ ansible-playbook playbooks/deploy.yml -t fast_deploy
@@ -79,6 +79,12 @@ Rollback to the previous release
 
 ```
 $ ansible-playbook playbooks/rollback.yml
+```
+
+Restart all services
+
+```
+$ ansible-playbook playbooks/retart.yml
 ```
 
 **How to configure docker for rails application see [weazar/dora](https://github.com/weazar/dora)**
