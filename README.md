@@ -64,7 +64,7 @@ $ ansible-playbook playbooks/deploy.yml
 Deploy release without new gems, migrates and assets
 
 ```
-$ ansible-playbook playbooks/deploy.yml -t fast_deploy
+$ ansible-playbook playbooks/deploy.yml -t fast
 ```
 
 Export database data

@@ -8,6 +8,8 @@
   command: docker-compose -f docker-compose.prod.yml -p "{{ app_name }}" build
   args:
     chdir: "{{ current_path }}"
+  tags:
+    - fast
 
 - name: Up docker services
   command: docker-compose -f docker-compose.prod.yml -p "{{ app_name }}" up -d --force-recreate

@@ -4,5 +4,5 @@
   args:
     chdir: "{{ current_path }}"
   tags:
-    - fast_deploy
+    - fast
 ...
