@@ -15,3 +15,5 @@
   command: docker-compose -f docker-compose.prod.yml -p "{{ app_name }}" up -d --force-recreate
   args:
     chdir: "{{ current_path }}"
+  tags:
+    - fast
