@@ -6,7 +6,7 @@
     chdir: "{{ current_path }}"
 
 - name: Precompile assets
-  command: docker exec -it "{{ rails.stdout }}" sh -c 'bundle exec rake assets:precompile'
+  command: docker exec -i "{{ rails.stdout }}" bin/rake assets:precompile
   args:
     chdir: "{{ current_path }}"
 ...

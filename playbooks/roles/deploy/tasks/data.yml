@@ -6,12 +6,12 @@
     chdir: "{{ current_path }}"
 
 - name: Rake db migrate
-  command: docker exec -it "{{ rails.stdout }}" sh -c 'bundle exec rake db:migrate'
+  command: docker exec -i "{{ rails.stdout }}" bin/rake db:migrate
   args:
     chdir: "{{ current_path }}"
 
 - name: Rake db seed
-  command: docker exec -it "{{ rails.stdout }}" sh -c 'bundle exec rake db:seed'
+  command: docker exec -i "{{ rails.stdout }}" bin/rake db:seed
   args:
     chdir: "{{ current_path }}"
 ...

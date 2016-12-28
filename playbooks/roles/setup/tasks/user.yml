@@ -5,13 +5,12 @@
     createhome: yes
     shell: /bin/bash
     generate_ssh_key: no
+    groups: docker
+    append: yes
 
 - name: Copy dev ssh public key
   authorized_key:
     key: "{{ lookup('file', '/root/.ssh/id_rsa.pub') }}"
     user: "{{ app_name }}"
     state: present
-
-- name: Add docker group to user
-  command: usermod -aG docker "{{ app_name }}"
 ...

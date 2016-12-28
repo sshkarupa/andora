@@ -7,6 +7,7 @@ Project name is [an]sible, [do]cker and [ra]ils
 ## Features
 
 - Setup a host with dependencies and structure of directories
+- Create a swapfile if needed
 - Deploy a release
 - Export database data
 - Rollback to the previous release
@@ -53,6 +54,12 @@ Setup a host
 
 ```
 $ ansible-playbook playbooks/setup.yml
+```
+
+Create swapfile
+
+```
+$ ansible-playbook playbooks/swap.yml
 ```
 
 Deploy release

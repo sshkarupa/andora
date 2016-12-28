@@ -11,27 +11,27 @@
     chdir: "{{ current_path }}"
 
 - name: Rake db drop
-  command: docker exec -it "{{ rails.stdout }}" sh -c 'bundle exec rake db:drop'
+  command: docker exec -i "{{ rails.stdout }}" bin/rake db:drop
   args:
     chdir: "{{ current_path }}"
 
 - name: Rake db create
-  command: docker exec -it "{{ rails.stdout }}" sh -c 'bundle exec rake db:create'
+  command: docker exec -i "{{ rails.stdout }}" bin/rake db:create
   args:
     chdir: "{{ current_path }}"
 
 - name: Load data from structure.sql
-  command: docker exec -it "{{ rails.stdout }}" sh -c 'bundle exec rake db:structure:load'
+  command: docker exec -i "{{ rails.stdout }}" bin/rake db:structure:load
   args:
     chdir: "{{ current_path }}"
 
 - name: Rake db migrate
-  command: docker exec -it "{{ rails.stdout }}" sh -c 'bundle exec rake db:migrate'
+  command: docker exec -i "{{ rails.stdout }}" bin/rake db:migrate
   args:
     chdir: "{{ current_path }}"
 
 - name: Rake db seed
-  command: docker exec -it "{{ rails.stdout }}" sh -c 'bundle exec rake db:seed'
+  command: docker exec -i "{{ rails.stdout }}" bin/rake db:seed
   args:
     chdir: "{{ current_path }}"
 ...

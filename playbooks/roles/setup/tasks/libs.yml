@@ -11,37 +11,32 @@
     force: yes
     state: present
 
-- name: Add the docker PGP key
-  apt_key:
-    id: "58118E89F3A912897C070ADBF76221572C52609D"
-    keyserver: "hkp://p80.pool.sks-keyservers.net:80"
-    state: present
-
-- name: Add the docker apt repository
-  apt_repository:
-    repo: "deb https://apt.dockerproject.org/repo ubuntu-trusty main"
-    update_cache: yes
+- name: Install ca-certificates
+  apt:
+    pkg: "ca-certificates"
+    force: yes
     state: present
 
 - name: Install docker-engine
   apt:
-    pkg: "docker-engine"
-    update_cache: yes
-    state: present
-
-- name: Install python-pip
-  apt:
-    pkg: "python-pip"
+    pkg: "docker.io"
     state: present
 
 - name: Install docker compose
-  pip:
-    name: docker-compose
-    version: "1.5.2"
-    state: present
+  get_url:
+    url: "https://github.com/docker/compose/releases/download/{{docker_compose_version}}/run.sh"
+    dest: /usr/local/bin/docker-compose
+    mode: 0755
+    owner: root
+    group: root
 
 - name: Install git-core
   apt:
     pkg: "git-core"
+    state: present
+
+- name: Install htop
+  apt:
+    pkg: "htop"
     state: present
 ...

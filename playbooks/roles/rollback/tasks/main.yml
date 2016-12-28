@@ -13,7 +13,12 @@
     chdir: "{{ releases_path }}/{{ previous_release.stdout }}"
 
 - name: Set current release link
-  file: src={{ releases_path }}/{{ previous_release.stdout }} path={{ current_path }} state=link follow=yes
+  file:
+    src: "{{ releases_path }}/{{ previous_release.stdout }}"
+    path: "{{ current_path }}"
+    state: link
+    follow: yes
 
-- debug: msg="Current release = {{ previous_release.stdout }}"
+- debug:
+    msg: "Current release is {{ previous_release.stdout }}"
 ...

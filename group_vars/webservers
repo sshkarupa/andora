@@ -12,9 +12,16 @@ shared_path: "{{ deploy_to }}/shared"
 system_path: "{{ shared_path }}/system"
 tmp_path: "{{ shared_path }}/tmp"
 
-git_repo: "ssh://git@gitgub.com/username/repository.git"
+git_repo: "git@gitgub.com/username/repository.git"
 git_branch: "master"
 git_cache_path: "{{ deploy_to }}/repo"
 
 keep_releases: 5
+
+# https://docs.docker.com/compose/install/
+docker_compose_version: 1.9.0
+
+swap_file_path: /swapfile
+swap_file_size: 4G
+swappiness: 1
 ...
