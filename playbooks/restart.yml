@@ -1,5 +1,6 @@
 ---
-- hosts: webservers
+- name: Restart services
+  hosts: webservers
   remote_user: "{{ app_name }}"
   gather_facts: no
 
