@@ -4,6 +4,11 @@
     src: structure.sql
     dest: "{{ db_path }}/structure.sql"
 
+- name: Restart rails containers
+  command: docker-compose -f docker-compose.prod.yml -p "{{ app_name }}" restart rails
+  args:
+    chdir: "{{ current_path }}"
+
 - name: Set rails container id
   shell: docker-compose -f docker-compose.prod.yml -p "{{ app_name }}" ps -q rails | head -1
   register: rails

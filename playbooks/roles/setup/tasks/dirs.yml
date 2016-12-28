@@ -27,6 +27,13 @@
     mode: 0775
   remote_user: "{{ app_name }}"
 
+- name: Ensure shared/db/structure.sql file exists
+  file:
+    path: "{{ db_path }}/structure.sql"
+    state: touch
+    mode: 0666
+  remote_user: "{{ app_name }}"
+
 - name: Ensure shared/log directory exists
   file:
     path: "{{ log_path }}"
