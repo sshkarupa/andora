@@ -96,6 +96,8 @@ $ ansible-playbook playbooks/restart.yml
 
 **How to configure docker for rails application see [weazar/dora](https://github.com/weazar/dora)**
 
+**Works fine with [DigitalOcean](https://m.do.co/c/fcd1d1654add)**
+
 ## License
 
 Author: Yuri Smirnov <hello@yurismirnov.com>
